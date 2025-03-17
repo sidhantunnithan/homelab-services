@@ -7,10 +7,6 @@ services:
     restart: unless-stopped
 
     network_mode: host
-    ports:
-      - "80:80"
-      - "443:443"
-
     volumes:
       - ./config/obsidian.example.com:/etc/nginx/sites-available/obsidian.example.com
       - ./config/obsidian.example.com:/etc/nginx/sites-enabled/obsidian.example.com
