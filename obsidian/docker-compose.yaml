@@ -15,5 +15,5 @@ services:
     ports:
       - 5984:5984
     volumes:
-      - ./couchdb-main:/opt/couchdb/data
-      - ./couchdb-etc:/opt/couchdb/etc/local.d
+      - ~/mounts/obsidian/couchdb-main:/opt/couchdb/data
+      - ~/mounts/obsidian/couchdb-etc:/opt/couchdb/etc/local.d
