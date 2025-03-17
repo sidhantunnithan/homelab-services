@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  couchdb-main:
+    container_name: couchdb-main
+    image: obsidian-couchdb:latest
+    build:
+      context: .
+    restart: unless-stopped
+    environment:
+      SERVER_URL: http://obsidian.example.com
+      COUCHDB_USER: jindan
+      COUCHDB_PASSWORD: REDACTED_COUCHDB_PASSWORD
+      COUCHDB_DATABASE: main
+    ports:
+      - 5984:5984
+    volumes:
+      - ./couchdb-main:/opt/couchdb/data
+      - ./couchdb-etc:/opt/couchdb/etc/local.d
