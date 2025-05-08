@@ -11,7 +11,7 @@ services:
       COUCHDB_PASSWORD: REDACTED_COUCHDB_PASSWORD
       COUCHDB_DATABASE: main
     ports:
-      - 5984:5984
+      - ${OBSIDIAN_PORT}:5984
     volumes:
       - ~/mounts/obsidian/couchdb-main:/opt/couchdb/data
       - ~/mounts/obsidian/couchdb-etc:/opt/couchdb/etc/local.d
