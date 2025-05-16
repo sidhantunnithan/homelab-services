@@ -1,10 +1,6 @@
-docker run -it --rm \
-    -v /home/jindan/.config/rclone:/config \
-    -v /home/jindan/mounts:/sync \
-    rclone/rclone \
-    sync /sync b2:homelab-zeus \
-    --exclude "anime/**" \
-    --exclude "movies/**" \
-    --exclude "series/**" \
-    --exclude "downloads/**" \
-    --progress --transfers 32
+rclone sync \
+    /home/jindan/mounts \
+    b2:homelab-zeus/mounts \
+    --exclude "jellyfin/media/**" \
+    --progress \
+    --transfers 32
