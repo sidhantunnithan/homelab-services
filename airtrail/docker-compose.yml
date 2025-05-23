@@ -2,7 +2,7 @@ services:
   db:
     container_name: airtrail_db
     image: postgres:16-alpine
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_DB: airtrail
       POSTGRES_USER: airtrail
@@ -19,7 +19,7 @@ services:
   airtrail:
     container_name: airtrail
     image: johly/airtrail:latest
-    restart: always
+    restart: unless-stopped
     environment:
       ORIGINS: http://zeus:8008,https://airtrail.example.com
       DB_URL: postgres://airtrail:REDACTED_AIRTRAIL_DB_PASSWORD@db:5432/airtrail
