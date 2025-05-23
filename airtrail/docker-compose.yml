@@ -3,16 +3,16 @@ services:
     container_name: airtrail_db
     image: postgres:16-alpine
     restart: always
-    env_file:
-      - .env
     environment:
-      POSTGRES_DB: ${DB_DATABASE_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: airtrail
+      POSTGRES_USER: airtrail
+      POSTGRES_PASSWORD: REDACTED_AIRTRAIL_DB_PASSWORD
+      ORIGINS: http://zeus:8008,https://airtrail.example.com
+      DB_URL: postgres://airtrail:REDACTED_AIRTRAIL_DB_PASSWORD@db:5432/airtrail
     volumes:
       - /home/jindan/mounts/airtrail/data:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE_NAME}']
+      test: ['CMD-SHELL', 'pg_isready -U airtrail -d airtrail']
       interval: 5s
       timeout: 5s
       retries: 5
@@ -20,8 +20,12 @@ services:
     container_name: airtrail
     image: johly/airtrail:latest
     restart: always
-    env_file:
-      - .env
+    environment:
+      ORIGINS: http://zeus:8008,https://airtrail.example.com
+      DB_URL: postgres://airtrail:REDACTED_AIRTRAIL_DB_PASSWORD@db:5432/airtrail
+      DB_PASSWORD: REDACTED_AIRTRAIL_DB_PASSWORD
+      DB_DATABASE_NAME: airtrail
+      DB_USERNAME: airtrail
     ports:
       - ${AIRTRAIL_PORT}:3000
     depends_on:
