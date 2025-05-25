@@ -4,4 +4,5 @@ rclone sync \
     --exclude "jellyfin/media/**" \
     --exclude "cache/**" \
     --progress \
-    --transfers 32
+    --transfers 32 \
+    --checkers 32
