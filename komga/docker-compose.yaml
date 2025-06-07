@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  komga:
+    image: gotson/komga
+    container_name: komga
+    volumes:
+      - type: bind
+        source: /home/jindan/mounts/komga/config
+        target: /config
+      - type: bind
+        source: /home/jindan/mounts/media/books
+        target: /data
+      - type: bind
+        source: /etc/timezone #alternatively you can use a TZ environment variable, like TZ=Europe/London
+        target: /etc/timezone
+        read_only: true
+    ports:
+      - 25600:25600
+    restart: unless-stopped

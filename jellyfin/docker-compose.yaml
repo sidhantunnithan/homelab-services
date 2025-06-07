@@ -16,4 +16,4 @@ services:
     volumes:
       - ~/mounts/jellyfin/config:/config
       - ~/mounts/jellyfin/cache:/cache
-      - ~/mounts/jellyfin/media:/media
+      - ~/mounts/media:/media
