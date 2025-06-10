@@ -5,5 +5,6 @@ rclone sync \
     --exclude "cache/**" \
     --progress \
     --fast-list \
+    --skip-links \
     --transfers 32 \
     --checkers 32
