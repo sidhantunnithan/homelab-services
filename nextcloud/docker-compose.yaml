@@ -4,7 +4,7 @@ services:
     restart: always
     command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     volumes:
-      - /home/jindan/mounts/nextcloud/db:/var/lib/mysql
+      - /data/service_data/nextcloud/db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=REDACTED
       - MYSQL_PASSWORD=REDACTED
@@ -19,7 +19,7 @@ services:
     links:
       - db
     volumes:
-      - /home/jindan/mounts/nextcloud/data:/var/www/html
+      - /data/service_data/nextcloud/data:/var/www/html
     environment:
       - MYSQL_PASSWORD=REDACTED
       - MYSQL_DATABASE=nextcloud

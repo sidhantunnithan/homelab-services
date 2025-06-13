@@ -14,6 +14,6 @@ services:
               count: all
               capabilities: [gpu]
     volumes:
-      - ~/mounts/jellyfin/config:/config
-      - ~/mounts/jellyfin/cache:/cache
-      - ~/mounts/media:/media
+      - /data/service_data/jellyfin/config:/config
+      - /data/service_data/jellyfin/cache:/cache
+      - /data/media:/media

@@ -12,14 +12,14 @@ services:
     depends_on:
       - grampsweb_redis
     volumes:
-      - /home/jindan/mounts/grampsweb/users:/app/users  # persist user database
-      - /home/jindan/mounts/grampsweb/indexdir:/app/indexdir  # persist search index
-      - /home/jindan/mounts/grampsweb/thumbnail_cache:/app/thumbnail_cache  # persist thumbnails
-      - /home/jindan/mounts/grampsweb/cache:/app/cache  # persist export and report caches
-      - /home/jindan/mounts/grampsweb/secret:/app/secret  # persist flask secret
-      - /home/jindan/mounts/grampsweb/db:/root/.gramps/grampsdb  # persist Gramps database
-      - /home/jindan/mounts/grampsweb/media:/app/media  # persist media files
-      - /home/jindan/mounts/grampsweb/tmp:/tmp
+      - /data/service_data/grampsweb/users:/app/users  # persist user database
+      - /data/service_data/grampsweb/indexdir:/app/indexdir  # persist search index
+      - /data/service_data/grampsweb/thumbnail_cache:/app/thumbnail_cache  # persist thumbnails
+      - /data/service_data/grampsweb/cache:/app/cache  # persist export and report caches
+      - /data/service_data/grampsweb/secret:/app/secret  # persist flask secret
+      - /data/service_data/grampsweb/db:/root/.gramps/grampsdb  # persist Gramps database
+      - /data/service_data/grampsweb/media:/app/media  # persist media files
+      - /data/service_data/grampsweb/tmp:/tmp
 
   grampsweb_celery:
     <<: *grampsweb  # YAML merge key copying the entire grampsweb service config

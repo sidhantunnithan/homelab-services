@@ -5,7 +5,7 @@ services:
     ports:
       - ${ACTUAL_PORT}:5006
     volumes:
-      - ~/mounts/actual/data:/data
+      - /data/service_data/actual/data:/data
     healthcheck:
       test: ['CMD-SHELL', 'node src/scripts/health-check.js']
       interval: 60s

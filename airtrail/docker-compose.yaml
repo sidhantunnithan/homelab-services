@@ -10,7 +10,7 @@ services:
       ORIGINS: http://zeus:8008,https://airtrail.example.com
       DB_URL: postgres://airtrail:REDACTED_AIRTRAIL_DB_PASSWORD@db:5432/airtrail
     volumes:
-      - /home/jindan/mounts/airtrail/data:/var/lib/postgresql/data
+      - /data/service_data/airtrail/data:/var/lib/postgresql/data
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U airtrail -d airtrail']
       interval: 5s
