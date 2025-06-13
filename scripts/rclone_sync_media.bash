@@ -8,5 +8,5 @@ rclone sync \
     --progress \
     --fast-list \
     --skip-links \
-    --transfers 32 \
-    --checkers 32
+    --transfers 8 \
+    --checkers 8
