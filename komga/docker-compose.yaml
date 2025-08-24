@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   komga:
-    image: gotson/komga
+    image: gotson/komga:1.23.1
     container_name: komga
     volumes:
       - type: bind
