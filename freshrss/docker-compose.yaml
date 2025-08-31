@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   freshrss:
     image: freshrss/freshrss:1.26.3
