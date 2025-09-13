@@ -1,6 +1,6 @@
 services:
   komga:
-    image: gotson/komga:1.23.1
+    image: gotson/komga:1.23.4
     container_name: komga
     volumes:
       - type: bind
