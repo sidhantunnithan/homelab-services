@@ -3,7 +3,7 @@ services:
     container_name: cloudflared
     image: cloudflare/cloudflared:latest
     environment:
-      - TUNNEL_TOKEN=REDACTED_TUNNEL_TOKEN
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
 
     command: tunnel run
     restart: unless-stopped

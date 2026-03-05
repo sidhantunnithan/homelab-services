@@ -6,8 +6,8 @@ services:
     volumes:
       - /data/service_data/nextcloud/db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=REDACTED
-      - MYSQL_PASSWORD=REDACTED
+      - MYSQL_ROOT_PASSWORD=${NEXTCLOUD_MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${NEXTCLOUD_MYSQL_PASSWORD}
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
 
@@ -21,7 +21,7 @@ services:
     volumes:
       - /data/service_data/nextcloud/data:/var/www/html
     environment:
-      - MYSQL_PASSWORD=REDACTED
+      - MYSQL_PASSWORD=${NEXTCLOUD_MYSQL_PASSWORD}
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db

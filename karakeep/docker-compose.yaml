@@ -11,11 +11,9 @@ services:
     environment:
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
-      # OPENAI_API_KEY: ...
-
-      # You almost never want to change the value of the DATA_DIR variable.
-      # If you want to mount a custom directory, change the volume mapping above instead.
-      DATA_DIR: /data # DON'T CHANGE THIS
+      NEXTAUTH_SECRET: ${KARAKEEP_NEXTAUTH_SECRET}
+      OPENAI_API_KEY: ${KARAKEEP_OPENAI_API_KEY}
+      DATA_DIR: /data
   chrome:
     image: gcr.io/zenika-hub/alpine-chrome:124
     restart: unless-stopped
@@ -33,5 +31,6 @@ services:
       - .env
     environment:
       MEILI_NO_ANALYTICS: "true"
+      MEILI_MASTER_KEY: ${KARAKEEP_MEILI_MASTER_KEY}
     volumes:
       - /data/service_data/karakeep/meilisearch:/meili_data
