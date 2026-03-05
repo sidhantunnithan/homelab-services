@@ -9,10 +9,10 @@ services:
       - TZ=Etc/UTC
       - DELUGE_LOGLEVEL=error #optional
     ports:
-      - ${DELUGE_PORT}:8112
+      - 127.0.0.1:${DELUGE_PORT}:8112
       - 6881:6881
       - 6881:6881/udp
-      - 58846:58846 #optional
+      - 127.0.0.1:58846:58846 #optional
     volumes:
       - /data/service_data/deluge/config:/config
       - /data/service_data/deluge/downloads:/downloads
