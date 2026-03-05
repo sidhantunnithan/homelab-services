@@ -1,18 +1,11 @@
 services:
   komga:
-    image: gotson/komga:1.23.4
+    image: gotson/komga:1.24.1
     container_name: komga
     volumes:
-      - type: bind
-        source: /data/service_data/komga/config
-        target: /config
-      - type: bind
-        source: /data/media/books
-        target: /data
-      - type: bind
-        source: /etc/timezone #alternatively you can use a TZ environment variable, like TZ=Europe/London
-        target: /etc/timezone
-        read_only: true
+      - /data/service_data/komga/config:/config
+      - /data/media/books:/data
+      - /etc/timezone:/etc/timezone:ro
     ports:
       - 127.0.0.1:${KOMGA_PORT}:25600
     restart: unless-stopped
