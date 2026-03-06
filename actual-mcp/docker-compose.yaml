@@ -1,6 +1,6 @@
 services:
   actual-mcp:
-    image: sstefanov/actual-mcp:latest
+    image: public.ecr.aws/jindan-containers/projects:actual-mcp
     container_name: actual-mcp
     ports:
       - 0.0.0.0:${ACTUAL_MCP_PORT}:3000
