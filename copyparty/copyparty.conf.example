@@ -1,0 +1,24 @@
+[global]
+xff-src: lan
+xff-hdr: cf-connecting-ip
+xf-proto: x-forwarded-proto
+
+[accounts]
+user1: changeme
+user2: changeme
+
+[/]
+/w
+accs:
+  A: user1
+
+[/media]
+/media
+accs:
+  A: user1
+
+[/user2]
+/w/user2
+accs:
+  rw: user2
+  A: user1
