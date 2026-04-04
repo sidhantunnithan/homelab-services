@@ -8,8 +8,10 @@ services:
     volumes:
       - /data/files:/w
       - /data/media:/media
-      - ./copyparty.conf:/cfg/copyparty.conf:ro
-    command: ["-c", "/cfg/copyparty.conf", "--xff-src", "lan", "--xff-hdr", "cf-connecting-ip", "--xf-proto", "x-forwarded-proto"]
+      - /data/service_data/copyparty/config:/cfg
+    command: ["-a", "jindan:${COPYPARTY_PASSWORD}", "-a", "vimaan:${VIMAAN_PASSWORD}", "-v", "/w::A,jindan", "-v", "/media:media:A,jindan", "-v", "/w/vimaan:vimaan:rw,vimaan:A,jindan", "--xff-src", "lan", "--xff-hdr", "cf-connecting-ip", "--xf-proto", "x-forwarded-proto"]
     environment:
       - TZ=Asia/Calcutta
+      - COPYPARTY_PASSWORD=${COPYPARTY_PASSWORD}
+      - VIMAAN_PASSWORD=${VIMAAN_PASSWORD}
       - PRTY_NO_DB_LOCK=1
