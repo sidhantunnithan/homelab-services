@@ -9,7 +9,6 @@ services:
       - /data/files:/data/files
       - /data/media:/data/media
       - /data/service_data/copyparty/config:/cfg
-      - ./copyparty.conf:/cfg/copyparty.conf:ro
     environment:
       - TZ=Asia/Calcutta
       - PRTY_NO_DB_LOCK=1
