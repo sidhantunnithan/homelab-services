@@ -1,0 +1,9 @@
+services:
+  element-web:
+    image: vectorim/element-web:latest
+    container_name: element-web
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:${ELEMENT_WEB_PORT}:80
+    volumes:
+      - ./config.json:/app/config.json:ro
