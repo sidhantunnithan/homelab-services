@@ -13,9 +13,9 @@ RUN useradd -m -u 1000 -s /bin/bash nanobot
 
 WORKDIR /opt/nanobot
 
-# Install nanobot from source, as documented in the upstream Install section.
+# Install nanobot from source with Matrix extras enabled.
 RUN git clone --depth 1 https://github.com/HKUDS/nanobot.git . && \
-    pip install -e .
+    pip install -e ".[matrix]"
 
 RUN mkdir -p /home/nanobot/.nanobot && \
     chown -R nanobot:nanobot /home/nanobot /opt/nanobot
