@@ -11,14 +11,23 @@ user2: changeme
 /w
 accs:
   A: user1
+flags:
+  u2ts: fu
+  up_ts: fu
 
 [/media]
 /media
 accs:
   A: user1
+flags:
+  u2ts: fu
+  up_ts: fu
 
 [/user2]
 /w/user2
 accs:
   rw: user2
   A: user1
+flags:
+  u2ts: fu
+  up_ts: fu
