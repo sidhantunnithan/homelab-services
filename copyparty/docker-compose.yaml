@@ -6,8 +6,8 @@ services:
     ports:
       - 127.0.0.1:${COPYPARTY_PORT}:3923
     volumes:
-      - /data/files:/w
-      - /data/media:/media
+      - /data/files:/data/files
+      - /data/media:/data/media
       - /data/service_data/copyparty/config:/cfg
       - ./copyparty.conf:/cfg/copyparty.conf:ro
     environment:
