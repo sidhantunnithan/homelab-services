@@ -1,2 +1,3 @@
 .secrets.env
 copyparty/copyparty.conf
+element-web/config.json
