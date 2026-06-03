@@ -12,6 +12,7 @@ services:
         environment:
             APP_KEY: ${FIREFLY_APP_KEY}
             DB_PASSWORD: ${FIREFLY_DB_PASSWORD}
+            APP_URL: https://firefly.${BASE_DOMAIN}
         ports:
             - ${FIREFLY_PORT}:8080
         depends_on:

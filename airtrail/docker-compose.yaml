@@ -7,7 +7,7 @@ services:
       POSTGRES_DB: airtrail
       POSTGRES_USER: airtrail
       POSTGRES_PASSWORD: ${AIRTRAIL_DB_PASSWORD}
-      ORIGINS: http://zeus:8008,https://airtrail.example.com
+      ORIGINS: http://zeus:8008,https://airtrail.${BASE_DOMAIN}
       DB_URL: postgres://airtrail:${AIRTRAIL_DB_PASSWORD}@db:5432/airtrail
     volumes:
       - /data/service_data/airtrail/data:/var/lib/postgresql/data
@@ -21,7 +21,7 @@ services:
     image: johly/airtrail:latest
     restart: unless-stopped
     environment:
-      ORIGINS: http://zeus:8008,https://airtrail.example.com
+      ORIGINS: http://zeus:8008,https://airtrail.${BASE_DOMAIN}
       DB_URL: postgres://airtrail:${AIRTRAIL_DB_PASSWORD}@db:5432/airtrail
       DB_PASSWORD: ${AIRTRAIL_DB_PASSWORD}
       DB_DATABASE_NAME: airtrail

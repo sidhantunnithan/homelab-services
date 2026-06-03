@@ -6,7 +6,7 @@ services:
       context: .
     restart: unless-stopped
     environment:
-      SERVER_URL: http://obsidian.example.com
+      SERVER_URL: http://obsidian.${BASE_DOMAIN}
       COUCHDB_USER: ${OBSIDIAN_COUCHDB_USER}
       COUCHDB_PASSWORD: ${OBSIDIAN_COUCHDB_PASSWORD}
       COUCHDB_DATABASE: main
