@@ -1,3 +1,4 @@
+#!/bin/bash
 BUCKET_NAME="jindan-media-archive"
 MEDIA_MOUNT_PATH="/data/media"
 
