@@ -2,6 +2,7 @@
 xff-src: lan
 xff-hdr: cf-connecting-ip
 xf-proto: x-forwarded-proto
+rproxy: 1
 
 [accounts]
 user1: changeme
