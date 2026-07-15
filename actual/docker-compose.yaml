@@ -1,6 +1,6 @@
 services:
   actual:
-    image: docker.io/actualbudget/actual-server:26.5.2
+    image: docker.io/actualbudget/actual-server:26.7.0
     container_name: actual
     ports:
       - 127.0.0.1:${ACTUAL_PORT}:5006
