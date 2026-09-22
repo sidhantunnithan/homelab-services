@@ -1,0 +1,23 @@
+services:
+  caddy:
+    build: .
+    image: caddy-cloudflare:local
+    container_name: caddy
+    restart: unless-stopped
+    # host networking so Caddy can bind the tailnet IP and reach services on 127.0.0.1
+    network_mode: host
+    environment:
+      BASE_DOMAIN: ${BASE_DOMAIN}
+      CADDY_BIND_IP: ${CADDY_BIND_IP}
+      CLOUDFLARE_API_TOKEN: ${CADDY_CLOUDFLARE_API_TOKEN}
+      AIRTRAIL_PORT: ${AIRTRAIL_PORT}
+      KARAKEEP_PORT: ${KARAKEEP_PORT}
+      PAPERLESS_PORT: ${PAPERLESS_PORT}
+      ACTUAL_MCP_PORT: ${ACTUAL_MCP_PORT}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /data/service_data/caddy/data:/data
+      - /data/service_data/caddy/config:/config
+    logging:
+      options:
+        max-size: "10m"
