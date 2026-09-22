@@ -17,11 +17,6 @@
 		reverse_proxy 127.0.0.1:{$AIRTRAIL_PORT}
 	}
 
-	@paperless host paperless.internal.{$BASE_DOMAIN}
-	handle @paperless {
-		reverse_proxy 127.0.0.1:{$PAPERLESS_PORT}
-	}
-
 	@fitness host fitness.internal.{$BASE_DOMAIN}
 	handle @fitness {
 		root * /srv/pages
