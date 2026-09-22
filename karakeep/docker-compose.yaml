@@ -5,7 +5,7 @@ services:
     volumes:
       - /data/service_data/karakeep/data:/data
     ports:
-      - ${KARAKEEP_PORT}:3000  # host:docker
+      - 127.0.0.1:${KARAKEEP_PORT}:3000  # host:docker
     env_file:
       - .env
     environment:

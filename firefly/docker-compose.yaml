@@ -14,7 +14,7 @@ services:
             DB_PASSWORD: ${FIREFLY_DB_PASSWORD}
             APP_URL: https://firefly.${BASE_DOMAIN}
         ports:
-            - ${FIREFLY_PORT}:8080
+            - 127.0.0.1:${FIREFLY_PORT}:8080
         depends_on:
             - db
 
@@ -39,7 +39,7 @@ services:
         networks:
             - firefly_iii
         ports:
-            - ${FIREFLY_IMPORTER_PORT}:8080
+            - 127.0.0.1:${FIREFLY_IMPORTER_PORT}:8080
         depends_on:
             - app
         env_file: .importer.env

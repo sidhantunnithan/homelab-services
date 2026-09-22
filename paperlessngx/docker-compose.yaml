@@ -48,7 +48,7 @@ services:
       - db
       - broker
     ports:
-      - "${PAPERLESS_PORT}:8000"
+      - "127.0.0.1:${PAPERLESS_PORT}:8000"
     volumes:
       - /data/service_data/paperlessngx/data:/usr/src/paperless/data
       - /data/service_data/paperlessngx/media:/usr/src/paperless/media

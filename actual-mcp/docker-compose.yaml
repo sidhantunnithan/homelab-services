@@ -3,7 +3,7 @@ services:
     image: public.ecr.aws/jindan-containers/actual-mcp:latest
     container_name: actual-mcp
     ports:
-      - 0.0.0.0:${ACTUAL_MCP_PORT}:3000
+      - 127.0.0.1:${ACTUAL_MCP_PORT}:3000
     environment:
       - ACTUAL_SERVER_URL=${ACTUAL_SERVER_URL}
       - ACTUAL_PASSWORD=${ACTUAL_PASSWORD}

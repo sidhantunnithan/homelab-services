@@ -3,5 +3,5 @@ services:
     image: public.ecr.aws/jindan-containers/8085-sim:latest
     container_name: 8085sim
     ports:
-      - 0.0.0.0:${SIM8085_PORT}:5050
+      - 127.0.0.1:${SIM8085_PORT}:5050
     restart: unless-stopped
