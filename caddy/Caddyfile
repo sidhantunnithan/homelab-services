@@ -1,4 +1,4 @@
-# Tailnet-only services. *.home.<domain> resolves publicly to zeus-vm's
+# Tailnet-only services. *.internal.<domain> resolves publicly to zeus-vm's
 # tailnet IP, which is unreachable from outside the tailnet.
 {
 	# :80 on the tailnet IP belongs to `tailscale serve`; no HTTP redirect listener
@@ -6,28 +6,28 @@
 	default_bind {$CADDY_BIND_IP}
 }
 
-*.home.{$BASE_DOMAIN} {
+*.internal.{$BASE_DOMAIN} {
 	tls {
 		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 		resolvers 1.1.1.1
 	}
 
-	@airtrail host airtrail.home.{$BASE_DOMAIN}
+	@airtrail host airtrail.internal.{$BASE_DOMAIN}
 	handle @airtrail {
 		reverse_proxy 127.0.0.1:{$AIRTRAIL_PORT}
 	}
 
-	@karakeep host karakeep.home.{$BASE_DOMAIN}
+	@karakeep host karakeep.internal.{$BASE_DOMAIN}
 	handle @karakeep {
 		reverse_proxy 127.0.0.1:{$KARAKEEP_PORT}
 	}
 
-	@paperless host paperless.home.{$BASE_DOMAIN}
+	@paperless host paperless.internal.{$BASE_DOMAIN}
 	handle @paperless {
 		reverse_proxy 127.0.0.1:{$PAPERLESS_PORT}
 	}
 
-	@actual-mcp host actual-mcp.home.{$BASE_DOMAIN}
+	@actual-mcp host actual-mcp.internal.{$BASE_DOMAIN}
 	handle @actual-mcp {
 		reverse_proxy 127.0.0.1:{$ACTUAL_MCP_PORT} {
 			flush_interval -1

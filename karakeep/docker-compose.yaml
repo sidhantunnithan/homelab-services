@@ -11,7 +11,7 @@ services:
     environment:
       MEILI_ADDR: http://meilisearch:7700
       BROWSER_WEB_URL: http://chrome:9222
-      NEXTAUTH_URL: https://karakeep.home.${BASE_DOMAIN}
+      NEXTAUTH_URL: https://karakeep.internal.${BASE_DOMAIN}
       NEXTAUTH_SECRET: ${KARAKEEP_NEXTAUTH_SECRET}
       OPENAI_API_KEY: ${KARAKEEP_OPENAI_API_KEY}
       DATA_DIR: /data
