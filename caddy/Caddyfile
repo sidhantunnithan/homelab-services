@@ -29,6 +29,14 @@
 		}
 	}
 
+	@fitness host fitness.internal.{$BASE_DOMAIN}
+	handle @fitness {
+		root * /srv/pages
+		rewrite / /fitness.html
+		try_files {path} {path}.html
+		file_server
+	}
+
 	handle {
 		respond 404
 	}

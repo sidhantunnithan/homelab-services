@@ -15,6 +15,7 @@ services:
       ACTUAL_MCP_PORT: ${ACTUAL_MCP_PORT}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /data/service_data/caddy/pages:/srv/pages:ro
       - /data/service_data/caddy/data:/data
       - /data/service_data/caddy/config:/config
     logging:
