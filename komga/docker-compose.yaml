@@ -1,6 +1,6 @@
 services:
   komga:
-    image: gotson/komga:1.26.3
+    image: gotson/komga:1.27.1
     container_name: komga
     volumes:
       - /data/service_data/komga/config:/config
