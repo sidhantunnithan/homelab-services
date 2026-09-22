@@ -22,13 +22,6 @@
 		reverse_proxy 127.0.0.1:{$PAPERLESS_PORT}
 	}
 
-	@actual-mcp host actual-mcp.internal.{$BASE_DOMAIN}
-	handle @actual-mcp {
-		reverse_proxy 127.0.0.1:{$ACTUAL_MCP_PORT} {
-			flush_interval -1
-		}
-	}
-
 	@fitness host fitness.internal.{$BASE_DOMAIN}
 	handle @fitness {
 		root * /srv/pages

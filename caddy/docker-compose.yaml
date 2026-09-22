@@ -12,7 +12,6 @@ services:
       CLOUDFLARE_API_TOKEN: ${CADDY_CLOUDFLARE_API_TOKEN}
       AIRTRAIL_PORT: ${AIRTRAIL_PORT}
       PAPERLESS_PORT: ${PAPERLESS_PORT}
-      ACTUAL_MCP_PORT: ${ACTUAL_MCP_PORT}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - /data/service_data/caddy/pages:/srv/pages:ro
