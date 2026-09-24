@@ -17,6 +17,26 @@
 		reverse_proxy 127.0.0.1:{$AIRTRAIL_PORT}
 	}
 
+	@actual host actual.internal.{$BASE_DOMAIN}
+	handle @actual {
+		reverse_proxy 127.0.0.1:{$ACTUAL_PORT}
+	}
+
+	@komga host komga.internal.{$BASE_DOMAIN}
+	handle @komga {
+		reverse_proxy 127.0.0.1:{$KOMGA_PORT}
+	}
+
+	@audiobookshelf host audiobookshelf.internal.{$BASE_DOMAIN}
+	handle @audiobookshelf {
+		reverse_proxy 127.0.0.1:{$AUDIOBOOKSHELF_PORT}
+	}
+
+	@deluge host deluge.internal.{$BASE_DOMAIN}
+	handle @deluge {
+		reverse_proxy 127.0.0.1:{$DELUGE_PORT}
+	}
+
 	@fitness host fitness.internal.{$BASE_DOMAIN}
 	handle @fitness {
 		root * /srv/pages

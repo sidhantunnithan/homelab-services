@@ -11,6 +11,10 @@ services:
       CADDY_BIND_IP: ${CADDY_BIND_IP}
       CLOUDFLARE_API_TOKEN: ${CADDY_CLOUDFLARE_API_TOKEN}
       AIRTRAIL_PORT: ${AIRTRAIL_PORT}
+      ACTUAL_PORT: ${ACTUAL_PORT}
+      KOMGA_PORT: ${KOMGA_PORT}
+      AUDIOBOOKSHELF_PORT: ${AUDIOBOOKSHELF_PORT}
+      DELUGE_PORT: ${DELUGE_PORT}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - /data/service_data/caddy/pages:/srv/pages:ro
