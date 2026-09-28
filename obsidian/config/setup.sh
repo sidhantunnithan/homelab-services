@@ -1,17 +1,16 @@
 #!/bin/sh -e
-# Pre-create the system databases so CouchDB comes up clean as a single node.
+# Configure CouchDB as a single node.
 #
-# Deliberately no [admins] entry: the admin is created at runtime from
-# COUCHDB_USER / COUCHDB_PASSWORD. Baking one in here put a generated
-# credential into an image layer, and with `sh -x` into the build log too.
+# Nothing is started here and no admin is created. CouchDB 3.x refuses to boot
+# without an admin, which is why this script used to generate a `dbadmin`
+# account at build time - baking a credential into an image layer (and, under
+# `sh -x`, into the build log).
+#
+# With single_node=true the official entrypoint creates the admin from
+# COUCHDB_USER / COUCHDB_PASSWORD and provisions _users, _replicator and
+# _global_changes on first start, so the build needs no credential at all.
 
 cat >/opt/couchdb/etc/local.ini <<INI
 [couchdb]
 single_node=true
 INI
-
-nohup bash -c "/docker-entrypoint.sh /opt/couchdb/bin/couchdb &"
-sleep 15
-
-curl -X PUT http://127.0.0.1:5984/_users
-curl -X PUT http://127.0.0.1:5984/_replicator
