@@ -1,7 +1,7 @@
 services:
   deluge:
     container_name: deluge
-    image: linuxserver/deluge
+    image: linuxserver/deluge:2.2.0-ls382
     restart: unless-stopped
     environment:
       - PUID=1000
@@ -16,3 +16,16 @@ services:
     volumes:
       - /data/service_data/deluge/config:/config
       - /data/service_data/deluge/downloads:/downloads
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # s6-overlay starts as root and drops to PUID/PGID
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - FSETID
+      - KILL
+      - SETGID
+      - SETUID

@@ -9,3 +9,7 @@ services:
     ports:
       - 127.0.0.1:${KOMGA_PORT}:25600
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

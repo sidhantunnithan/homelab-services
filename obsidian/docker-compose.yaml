@@ -6,7 +6,7 @@ services:
       context: .
     restart: unless-stopped
     environment:
-      SERVER_URL: http://obsidian.${BASE_DOMAIN}
+      SERVER_URL: https://obsidian.${BASE_DOMAIN}
       COUCHDB_USER: ${OBSIDIAN_COUCHDB_USER}
       COUCHDB_PASSWORD: ${OBSIDIAN_COUCHDB_PASSWORD}
       COUCHDB_DATABASE: main
@@ -15,3 +15,14 @@ services:
     volumes:
       - /data/service_data/obsidian/couchdb-main:/opt/couchdb/data
       - /data/service_data/obsidian/couchdb-etc:/opt/couchdb/etc/local.d
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # couchdb entrypoint fixes ownership then drops to the couchdb user
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID

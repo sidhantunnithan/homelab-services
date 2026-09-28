@@ -23,3 +23,10 @@ services:
     logging:
       options:
         max-size: "10m"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # binds :443 on the tailnet IP
+    cap_add:
+      - NET_BIND_SERVICE

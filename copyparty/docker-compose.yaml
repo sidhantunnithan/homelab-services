@@ -1,6 +1,6 @@
 services:
   copyparty:
-    image: copyparty/ac:latest
+    image: copyparty/ac:1.20.24
     container_name: copyparty
     restart: unless-stopped
     ports:
@@ -12,3 +12,13 @@ services:
     environment:
       - TZ=Asia/Calcutta
       - PRTY_NO_DB_LOCK=1
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID

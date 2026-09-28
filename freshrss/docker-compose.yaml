@@ -14,3 +14,15 @@ services:
     logging:
       options:
         max-size: "10m"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # apache binds :80 then drops to www-data; cron runs the feed refresh
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+      - NET_BIND_SERVICE

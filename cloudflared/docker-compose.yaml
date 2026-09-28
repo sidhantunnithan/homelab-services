@@ -1,11 +1,16 @@
 services:
   cloudeflared:
     container_name: cloudflared
-    image: cloudflare/cloudflared:latest
+    image: cloudflare/cloudflared:2026.9.1
     environment:
       - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
 
-    command: tunnel run
+    # Bind the metrics/diagnostics listener to loopback; it defaults to a
+    # random port on all interfaces.
+    command: --metrics 127.0.0.1:20241 tunnel run
     restart: unless-stopped
     network_mode: host
-    
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

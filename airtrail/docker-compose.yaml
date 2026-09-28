@@ -7,8 +7,6 @@ services:
       POSTGRES_DB: airtrail
       POSTGRES_USER: airtrail
       POSTGRES_PASSWORD: ${AIRTRAIL_DB_PASSWORD}
-      ORIGINS: ${AIRTRAIL_LAN_ORIGIN},https://airtrail.internal.${BASE_DOMAIN}
-      DB_URL: postgres://airtrail:${AIRTRAIL_DB_PASSWORD}@db:5432/airtrail
     volumes:
       - /data/service_data/airtrail/data:/var/lib/postgresql/data
     healthcheck:
@@ -16,9 +14,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # postgres starts as root to fix data-dir ownership, then drops to postgres
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
   airtrail:
     container_name: airtrail
-    image: johly/airtrail:latest
+    image: johly/airtrail:v3.12.0
     restart: unless-stopped
     environment:
       ORIGINS: ${AIRTRAIL_LAN_ORIGIN},https://airtrail.internal.${BASE_DOMAIN}
@@ -31,3 +40,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL

@@ -1,6 +1,6 @@
 services:
   audiobookshelf:
-    image: ghcr.io/advplyr/audiobookshelf:latest
+    image: ghcr.io/advplyr/audiobookshelf:2.36.1
     ports:
       - 127.0.0.1:${AUDIOBOOKSHELF_PORT}:80
     volumes:
@@ -10,3 +10,15 @@ services:
       - /data/service_data/audiobookshelf/metadata:/metadata
     environment:
       - TZ=Asia/Calcutta
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # binds :80 inside the container and fixes ownership on /config at startup
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+      - NET_BIND_SERVICE

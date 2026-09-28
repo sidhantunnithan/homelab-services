@@ -5,3 +5,7 @@ services:
     ports:
       - 127.0.0.1:${SIM8085_PORT}:5050
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
