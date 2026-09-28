@@ -1,7 +1,7 @@
 services:
   db:
     container_name: airtrail_db
-    image: postgres:16-alpine
+    image: postgres:16.15-alpine
     restart: unless-stopped
     environment:
       POSTGRES_DB: airtrail
@@ -27,7 +27,7 @@ services:
       - SETUID
   airtrail:
     container_name: airtrail
-    image: johly/airtrail:v3.12.0
+    image: johly/airtrail:v3.13.0
     restart: unless-stopped
     environment:
       ORIGINS: ${AIRTRAIL_LAN_ORIGIN},https://airtrail.internal.${BASE_DOMAIN}
