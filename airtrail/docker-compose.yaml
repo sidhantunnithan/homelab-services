@@ -35,21 +35,21 @@ services:
       DB_PASSWORD: ${AIRTRAIL_DB_PASSWORD}
       DB_DATABASE_NAME: airtrail
       DB_USERNAME: airtrail
+      # Enables file uploads (airline icons). Disabled entirely when unset.
+      UPLOAD_LOCATION: /app/uploads
     ports:
       - 127.0.0.1:${AIRTRAIL_PORT}:3000
+    volumes:
+      - /data/service_data/airtrail/uploads:/app/uploads
     depends_on:
       db:
         condition: service_healthy
+    # Run as node (1000:1000) from the start. The entrypoint only chowns the
+    # uploads dir and calls setpriv when it starts as root, so running as the
+    # target user outright means it needs no capabilities at all - the host
+    # directory is created 1000:1000 instead.
+    user: "1000:1000"
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
-    # v3.13.0 changed the entrypoint to start as root and drop privileges with
-    # setpriv; without these it crash-loops on "setresuid failed". v3.12.0 ran
-    # as an unprivileged user and needed none of them.
-    cap_add:
-      - CHOWN
-      - DAC_OVERRIDE
-      - FOWNER
-      - SETGID
-      - SETUID
