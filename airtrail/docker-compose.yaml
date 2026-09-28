@@ -44,3 +44,12 @@ services:
       - no-new-privileges:true
     cap_drop:
       - ALL
+    # v3.13.0 changed the entrypoint to start as root and drop privileges with
+    # setpriv; without these it crash-loops on "setresuid failed". v3.12.0 ran
+    # as an unprivileged user and needed none of them.
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
