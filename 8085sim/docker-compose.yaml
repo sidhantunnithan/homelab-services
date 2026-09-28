@@ -1,6 +1,6 @@
 services:
   8085sim:
-    image: public.ecr.aws/jindan-containers/8085-sim:latest
+    image: ${SIM8085_IMAGE}
     container_name: 8085sim
     ports:
       - 127.0.0.1:${SIM8085_PORT}:5050

@@ -1,3 +1,18 @@
+# Real secret values live here only - never committed.
 .secrets.env
+
+# Any backup / variant copy of the secrets file.
+.secrets.env.*
+!.secrets.env.example
+
+# Catch-all for stray env and backup files anywhere in the tree.
+*.env
+!*.env.example
+*.bak
+*.bak.*
+*~
+*.orig
+*.swp
+
+# Service configs holding real credentials.
 copyparty/copyparty.conf
-.secrets.env.bak*

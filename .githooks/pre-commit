@@ -1,0 +1,47 @@
+#!/bin/bash
+# Blocks secret-bearing files and token-shaped strings from being committed.
+# Enable with:  git config core.hooksPath .githooks
+#
+# This exists because .gitignore alone cannot stop `git add -f` or a path that
+# is already tracked - which is how .secrets.env.bak once reached a public push.
+
+set -uo pipefail
+fail=0
+red() { printf '\033[31m%s\033[0m\n' "$1" >&2; }
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$staged" ] && exit 0
+
+# --- 1. Forbidden paths -------------------------------------------------------
+while IFS= read -r f; do
+    case "$f" in
+        *.example|*.sample) continue ;;
+    esac
+    case "$f" in
+        .secrets.env|.secrets.env.*|*.env|*/.env|*.bak|*.bak.*|*.orig|*~|*.swp|*id_rsa*|*id_ed25519*|*.pem|*.p12|*.pfx)
+            red "BLOCKED  $f  - secret-bearing filename"
+            fail=1 ;;
+    esac
+done <<< "$staged"
+
+# --- 2. Token-shaped content --------------------------------------------------
+patterns='sk-[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{50,}|eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|xox[baprs]-[A-Za-z0-9-]{10,}'
+while IFS= read -r f; do
+    case "$f" in
+        *.example|*.sample|.githooks/*) continue ;;
+    esac
+    [ -f "$f" ] || continue
+    if git show ":$f" 2>/dev/null | grep -nEq "$patterns"; then
+        red "BLOCKED  $f  - contains a token-shaped string"
+        git show ":$f" | grep -nE "$patterns" | cut -c1-80 | sed 's/^/         /' >&2
+        fail=1
+    fi
+done <<< "$staged"
+
+if [ "$fail" -ne 0 ]; then
+    red ""
+    red "Commit aborted. Real values belong in .secrets.env (gitignored) only."
+    red "If this is a genuine false positive: git commit --no-verify"
+    exit 1
+fi
+exit 0

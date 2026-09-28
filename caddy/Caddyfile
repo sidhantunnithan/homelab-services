@@ -1,7 +1,7 @@
-# Tailnet-only services. *.internal.<domain> resolves publicly to zeus-vm's
-# tailnet IP, which is unreachable from outside the tailnet.
+# Tailnet-only services: these hostnames resolve to a Tailscale address that is
+# reachable only from inside the tailnet.
 {
-	# :80 on the tailnet IP belongs to `tailscale serve`; no HTTP redirect listener
+	# :80 on the bind IP belongs to `tailscale serve`; no HTTP redirect listener
 	auto_https disable_redirects
 	default_bind {$CADDY_BIND_IP}
 }
