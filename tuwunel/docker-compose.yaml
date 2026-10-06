@@ -1,0 +1,29 @@
+services:
+  tuwunel:
+    image: ghcr.io/matrix-construct/tuwunel:v1.9.3
+    container_name: tuwunel
+    restart: unless-stopped
+    ports:
+      - 127.0.0.1:${TUWUNEL_PORT}:8008
+    volumes:
+      - /data/service_data/tuwunel/data:/var/lib/tuwunel
+    environment:
+      TUWUNEL_SERVER_NAME: ${TUWUNEL_SERVER_NAME}
+      TUWUNEL_DATABASE_PATH: /var/lib/tuwunel
+      TUWUNEL_ADDRESS: 0.0.0.0
+      TUWUNEL_PORT: 8008
+      # Registration requires the token; leave false except when adding accounts.
+      TUWUNEL_ALLOW_REGISTRATION: ${TUWUNEL_ALLOW_REGISTRATION:-false}
+      TUWUNEL_REGISTRATION_TOKEN: ${TUWUNEL_REGISTRATION_TOKEN}
+      TUWUNEL_ALLOW_FEDERATION: 'false'
+      TUWUNEL_TRUSTED_SERVERS: '[]'
+      TUWUNEL_WELL_KNOWN__CLIENT: https://${TUWUNEL_SERVER_NAME}
+    logging:
+      options:
+        max-size: "10m"
+    # Runs as 1000:1000 from the start; the host data dir is created 1000:1000.
+    user: "1000:1000"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
