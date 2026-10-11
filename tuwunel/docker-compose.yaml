@@ -12,7 +12,6 @@ services:
       TUWUNEL_DATABASE_PATH: /var/lib/tuwunel
       TUWUNEL_ADDRESS: 0.0.0.0
       TUWUNEL_PORT: 8008
-      # Registration requires the token; leave false except when adding accounts.
       TUWUNEL_ALLOW_REGISTRATION: ${TUWUNEL_ALLOW_REGISTRATION:-false}
       TUWUNEL_REGISTRATION_TOKEN: ${TUWUNEL_REGISTRATION_TOKEN}
       TUWUNEL_ALLOW_FEDERATION: 'false'
